@@ -65,5 +65,12 @@ window.onload = () => {
     );
   }
 
-  drawDiamondPattern(100, 0, 200, 5, 'orange', 'teal');
+  drawDiamondPattern(
+    canvasWidth / 2,
+    canvasHeight / 4,
+    canvasHeight / 3,
+    5,
+    'fireBrick',
+    'forestGreen'
+  );
 }
