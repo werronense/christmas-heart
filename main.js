@@ -29,25 +29,41 @@ window.onload = () => {
     return rows;
   }
 
+  // recursive function to draw the rows of diamonds
+  function drawRows(x, y, height, rows, color) {
+    for (let i = 0; i < rows[0]; i++) {
+      drawDiamond(x + (height * i), y, height, color);
+    }
 
-  function drawDiamondPattern(startX, startY, side, scale, color1, color2) {
-    // main diamond
-    drawDiamond(startX, startY, side, scale % 2 == 0 ? color2 : color1);
-
+    if (rows[1]) {
+      if (rows[0] == rows[1]) {
+        drawRows(x, y + height, height, rows.slice(1), color);
+      } else if (rows[0] < rows[1]) {
+        drawRows(x - height, y + height, height, rows.slice(1), color);
+      } else {
+        drawRows(x + height, y + height, height, rows.slice(1), color);
+      }
+    }
   }
 
-  drawDiamondPattern(100, 0, 200, 3, 'orange', 'teal');
 
-  // main
-  //drawDiamond(100, 0, 200, 'orange');
-  // top
-  drawDiamond(100, 0, 200 / 3, 'teal');
-  // left
-  drawDiamond(100 / 3, 100 * (2 / 3), 200 / 3, 'teal');
-  // center
-  drawDiamond(100, 100 * (2 / 3), 200 / 3, 'teal');
-  // right
-  drawDiamond(100 + (200 / 3), 100 * (2 / 3), 200 / 3, 'teal');
-  // bottom
-  drawDiamond(100, 400 / 3, 200 / 3, 'teal');
+  function drawDiamondPattern(startX, startY, height, scale, color1, color2) {
+    // main diamond
+    drawDiamond(
+      startX,
+      startY,
+      height,
+      scale % 2 ? color1 : color2
+    );
+    // rows
+    drawRows(
+      startX,
+      startY,
+      height / scale,
+      computeRowLengths(scale),
+      scale % 2 ? color2 : color1
+    );
+  }
+
+  drawDiamondPattern(100, 0, 200, 5, 'orange', 'teal');
 }
