@@ -15,6 +15,21 @@ window.onload = () => {
     ctx.fill();
   }
 
+  // compute the number of diamonds in each row for a given number of rows
+  function computeRowLengths(n) {
+    let rows = [];
+    let columns = 1;
+
+    for (let i = 1; i <= n; i++) {
+      rows.push(columns);
+      if (i < n / 2) { columns += 2 };
+      if (i > n / 2) { columns -= 2 };
+    }
+
+    return rows;
+  }
+
+
   function drawDiamondPattern(startX, startY, side, scale, color1, color2) {
     // main diamond
     drawDiamond(startX, startY, side, scale % 2 == 0 ? color2 : color1);
