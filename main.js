@@ -2,15 +2,15 @@ window.onload = () => {
   const canvas = document.getElementById('mainCanvas');
   const ctx = canvas.getContext('2d');
 
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
+  let canvasWidth = canvas.width = window.innerWidth;
+  let canvasHeight = canvas.height = window.innerHeight;
 
-  function drawDiamond(startX, startY, side, color) {
+  function drawDiamond(startX, startY, height, color) {
     ctx.beginPath();
     ctx.moveTo(startX, startY);
-    ctx.lineTo(startX - (side / 2), startY + (side / 2));
-    ctx.lineTo(startX, startY + side);
-    ctx.lineTo(startX + (side / 2), startY + (side / 2));
+    ctx.lineTo(startX - (height / 2), startY + (height / 2));
+    ctx.lineTo(startX, startY + height);
+    ctx.lineTo(startX + (height / 2), startY + (height / 2));
     ctx.fillStyle = color;
     ctx.fill();
   }
