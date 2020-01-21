@@ -65,12 +65,47 @@ window.onload = () => {
     );
   }
 
+
+  function drawLobe(startX, startY, radius, color, side) {
+    ctx.beginPath();
+    ctx.arc(
+      // adjust starting x coordinate to avoid slight gap
+      startX + (side == "left" ? 0.5 : -0.5),
+      // adjust starting y coordinate to avoid slight gap
+      startY + 0.5,
+      radius,
+      (side == "left" ? (3 * Math.PI) / 4 : (5 * Math.PI) / 4),
+      (side == "left" ? (7 * Math.PI) / 4 : Math.PI / 4),
+      false
+    );
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+
   drawDiamondPattern(
     canvasWidth / 2,
     canvasHeight / 4,
     canvasHeight / 3,
-    5,
+    4,
     'fireBrick',
     'forestGreen'
   );
+
+  drawLobe(
+    canvasWidth / 2 + canvasHeight / 12,
+    canvasHeight / 4 + canvasHeight / 12,
+    Math.sqrt(2 * (canvasHeight / 12) ** 2),
+    'fireBrick',
+    'right'
+  );
+
+  drawLobe(
+    canvasWidth / 2 - canvasHeight / 12,
+    canvasHeight / 4 + canvasHeight / 12,
+    Math.sqrt(2 * (canvasHeight / 12) ** 2),
+    'forestGreen',
+    'left'
+  );
+
 }
