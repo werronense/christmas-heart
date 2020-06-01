@@ -83,29 +83,37 @@ window.onload = () => {
   }
 
 
-  drawDiamondPattern(
+  function getRadius(height) {
+    return Math.sqrt(2 * (height / 12) ** 2)
+  }
+
+
+  function drawHeart(startX, startY, height, fullHt, scale, color1, color2) {
+    drawDiamondPattern(startX, startY, height, scale, color1, color2);
+    drawLobe(
+      startX + height / 4,
+      startY + height / 4,
+      getRadius(fullHt),
+      color1,
+      'right'
+    )
+    drawLobe(
+      startX - height / 4,
+      startY + height / 4,
+      getRadius(fullHt),
+      color2,
+      'left'
+    )
+  }
+
+
+  drawHeart(
     canvasWidth / 2,
     canvasHeight / 4,
     canvasHeight / 3,
+    canvasHeight,
     4,
     'fireBrick',
     'forestGreen'
   );
-
-  drawLobe(
-    canvasWidth / 2 + canvasHeight / 12,
-    canvasHeight / 4 + canvasHeight / 12,
-    Math.sqrt(2 * (canvasHeight / 12) ** 2),
-    'fireBrick',
-    'right'
-  );
-
-  drawLobe(
-    canvasWidth / 2 - canvasHeight / 12,
-    canvasHeight / 4 + canvasHeight / 12,
-    Math.sqrt(2 * (canvasHeight / 12) ** 2),
-    'forestGreen',
-    'left'
-  );
-
 }
